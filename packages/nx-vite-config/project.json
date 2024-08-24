@@ -1,0 +1,19 @@
+{
+  "name": "nx-vite-config",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nx-vite-config/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nx-vite-config",
+        "main": "packages/nx-vite-config/src/index.ts",
+        "tsConfig": "packages/nx-vite-config/tsconfig.lib.json",
+        "assets": ["packages/nx-vite-config/*.md"]
+      }
+    }
+  }
+}

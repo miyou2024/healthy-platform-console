@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { VueNaiveButton } from '@healthy-platform-console/vue-naive-ui-component'
 </script>
 
 <template>
@@ -8,6 +9,7 @@
       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/jsx">Jsx</RouterLink>
     </nav>
+    <VueNaiveButton></VueNaiveButton>
   </header>
   <RouterView />
 </template>

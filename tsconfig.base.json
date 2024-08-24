@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@healthy-platform-console/nx-vite-config": [
+        "packages/nx-vite-config/src/index.ts"
+      ],
+      "@healthy-platform-console/vue-naive-ui-component": [
+        "packages/vue-naive-ui-component/src/index.ts"
+      ]
+    }
   },
   "include": [
     "// vue configuration",
