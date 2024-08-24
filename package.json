@@ -43,6 +43,7 @@
     "vue-tsc": "^2.0.0"
   },
   "dependencies": {
+    "@guolao/vue-monaco-editor": "^1.5.4",
     "naive-ui": "^2.39.0",
     "vfonts": "^0.0.3",
     "vue": "^3.3.4",

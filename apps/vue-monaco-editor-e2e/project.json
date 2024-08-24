@@ -1,0 +1,9 @@
+{
+  "name": "vue-monaco-editor-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/vue-monaco-editor-e2e/src",
+  "implicitDependencies": ["vue-monaco-editor"],
+  "// targets": "to see all targets run: nx show project vue-monaco-editor-e2e --web",
+  "targets": {}
+}
