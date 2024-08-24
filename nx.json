@@ -6,16 +6,44 @@
     "libsDir": "packages"
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
-      "default"
+      "default",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json"
     ],
-    "sharedGlobals": [
-      "{workspaceRoot}/.github/workflows/ci.yml"
-    ]
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "nxCloudAccessToken": "MzI2NzRmY2ItMTg4MS00MzBkLWIyODEtZjIyZTg3YThiNDEwfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MzI2NzRmY2ItMTg4MS00MzBkLWIyODEtZjIyZTg3YThiNDEwfHJlYWQtd3JpdGU=",
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "plugin": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
+    }
+  ],
+  "targetDefaults": {
+    "e2e-ci--**/*": {
+      "dependsOn": ["^build"]
+    }
+  }
 }
