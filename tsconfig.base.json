@@ -16,5 +16,15 @@
     "baseUrl": ".",
     "paths": {}
   },
+  "include": [
+    "// vue configuration",
+    "apps/**/src/**/*.js",
+    "apps/**/src/**/*.jsx",
+    "apps/**/src/**/*.ts",
+    "apps/**/src/**/*.vue",
+    "apps/**/*.d.ts",
+    "// customer d.ts",
+    "./types/*.d.ts"
+  ],
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,7 +1,11 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   root: __dirname,
@@ -17,7 +21,28 @@ export default defineConfig({
     host: 'localhost',
   },
 
-  plugins: [vue(), nxViteTsPaths()],
+  plugins: [
+    vue(),
+    vueJsx(),
+    AutoImport({
+      imports: [
+        'vue',
+        'vue-router',
+        {
+          'naive-ui': [
+            'useDialog',
+            'useMessage',
+            'useNotification',
+            'useLoadingBar'
+          ]
+        }
+      ]
+    }),
+    Components({
+      resolvers: [ NaiveUiResolver() ]
+    }),
+    nxViteTsPaths()
+  ],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -37,9 +62,9 @@ export default defineConfig({
     watch: false,
     globals: true,
     environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: [ 'src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}' ],
 
-    reporters: ['default'],
+    reporters: [ 'default' ],
     coverage: {
       reportsDirectory: '../../coverage/apps/vue-sm-ops',
       provider: 'v8',
