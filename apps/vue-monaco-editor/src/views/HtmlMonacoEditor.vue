@@ -28,8 +28,11 @@ function formatCode() {
 </script>
 
 <template>
+  <NInput placeholder="请输入URL地址"></NInput>
+  <br><br>
   <div class="container">
     <VueMonacoEditor
+      class="monaco-editor"
       ref="vueMonacoEditor"
       v-model:value="code"
       language="html"
