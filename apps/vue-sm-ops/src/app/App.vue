@@ -1,46 +1,79 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { VueNaiveButton } from '@healthy-platform-console/vue-naive-ui-component'
+
+import type { Component } from 'vue'
+import { defineComponent, h } from 'vue'
+import { NIcon } from 'naive-ui'
+import type { MenuOption } from 'naive-ui'
+import {
+  BagOutline as BagOutlineIcon,
+  FishOutline as FishIcon,
+  PawOutline as PawIcon
+} from '@vicons/ionicons5'
+import { RouterLink } from 'vue-router'
+
+function renderIcon(icon: Component) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
+
+const menuOptions: MenuOption[] = [
+  {
+    label: '首页',
+    key: 'home',
+    icon: renderIcon(FishIcon),
+    children: [
+      {
+        label: () => (
+          <RouterLink to={'/'}>中心</RouterLink>
+        ),
+        key: 'braise',
+      },
+      {
+        label: () => (
+          <RouterLink to={'/about'}>关于</RouterLink>
+        ),
+        key: 'braise',
+      },
+    ]
+  },
+  {
+    label: '测试',
+    key: 'bear-paw',
+    icon: renderIcon(PawIcon),
+    children: [
+      {
+        label: () => (
+          <RouterLink to={'/jsx'}>jsx</RouterLink>
+        ),
+        key: 'protect-wild-animals'
+      }
+    ]
+  },
+  {
+    label: () => (
+      <RouterLink to={'/shop'}>商城中心</RouterLink>
+    ),
+    key: 'shop',
+    icon: renderIcon(BagOutlineIcon),
+  }
+]
+
+const defaultExpandedKeys = ['fish', 'braise'];
 </script>
 
 <template>
   <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-      <RouterLink to="/jsx">Jsx</RouterLink>
-    </nav>
-    <VueNaiveButton></VueNaiveButton>
+    <n-menu
+      :mode="'horizontal'"
+      :options="menuOptions"
+      :default-expanded-keys="defaultExpandedKeys"
+      accordion
+    />
+<!--    <VueNaiveButton></VueNaiveButton>-->
   </header>
   <RouterView />
 </template>
 
 <style scoped lang="less">
-header {
-  line-height: 1.5;
-  max-width: 100vw;
-}
 
-nav > a {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 768px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 768px;
-  }
-
-  nav {
-    text-align: left;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
